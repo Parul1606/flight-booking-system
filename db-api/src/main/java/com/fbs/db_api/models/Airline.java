@@ -32,5 +32,5 @@ public class Airline {
     int totalFlights;
     @OneToOne
     AppUser admin;
-
+    String status;
 }

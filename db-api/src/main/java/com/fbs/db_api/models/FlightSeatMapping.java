@@ -7,6 +7,7 @@ package com.fbs.db_api.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -16,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Table(name = "flightseatmapping")
-public class FlightSeatMapping {
+public class FlightSeatMapping extends SeatMapping {
 
     // id	flightId	classname	range	baseprice	windowprice
 
@@ -27,13 +28,7 @@ public class FlightSeatMapping {
     @ManyToOne
     Flight flight;
 
-    String className;
+    LocalDateTime createdAt;
 
-    String range;  // 1-20
-
-    int basePrice;
-
-    int windowPrice;
-
-    int totalWindow;
+    LocalDateTime updatedAt;
 }

@@ -30,4 +30,6 @@ public class SubFlight {
     LocalDateTime departureTime;
     LocalDateTime arrivalTime;   // where the flight will land
     int boardingMinutes;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }

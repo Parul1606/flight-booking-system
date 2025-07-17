@@ -3,6 +3,7 @@ package com.fbs.db_api.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -35,5 +36,9 @@ public class AppUser {
 
     String userType;
 
+    String status;
 
+    LocalDateTime createdAt;
+
+    LocalDateTime updatedAt;
 }

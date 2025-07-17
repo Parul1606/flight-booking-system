@@ -25,9 +25,9 @@ public class Flight {
     @ManyToOne
     Aircraft aircraft;
 
-    String sourceAircraft;
+    String sourceAircraft;   // mumbai
 
-    String destinationAircraft;
+    String destinationAircraft;  // new york
 
     String flightType;  // International, Domestic, Emergency
 
@@ -42,4 +42,8 @@ public class Flight {
     LocalDateTime arrivalTime;   // when aircraft is going to land;  // EST Timezone
 
     boolean isConnecting;  // is this flight a connecting flight ? or not
+
+    LocalDateTime createdAt;
+
+    LocalDateTime updatedAt;
 }
