@@ -1,5 +1,6 @@
 package com.fbs.central_api.connectors;
 
+import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
@@ -37,4 +38,21 @@ public class DBApiConnector {
         log.info("Response: " + response.toString());
         return response.getBody();
     }
+
+    /*
+    we will write one method and that method will be hitting request to dbapicreateairline endpoint.
+    */
+    public Airline callCreatedAirlineEndpoint(Airline airline){
+        // 1. create url
+        String url = dbApiBaseUrl + "/airline/create";
+        // 2. create request
+        RequestEntity request = RequestEntity.post(url).body(airline);
+        // 3. create restTemplate object
+        RestTemplate restTemplate = new RestTemplate();
+        // 4. by using restTemplate.exchange method to call this endpoint
+        ResponseEntity<Airline> response = restTemplate.exchange(url, HttpMethod.POST, request, Airline.class);
+        return response.getBody();
+    }
+
+
 }

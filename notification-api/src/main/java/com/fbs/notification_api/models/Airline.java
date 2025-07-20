@@ -1,4 +1,4 @@
-package com.fbs.central_api.models;
+package com.fbs.notification_api.models;
 
 import lombok.*;
 

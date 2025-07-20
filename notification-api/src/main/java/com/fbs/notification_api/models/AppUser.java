@@ -1,4 +1,4 @@
-package com.fbs.central_api.models;
+package com.fbs.notification_api.models;
 
 import lombok.*;
 
@@ -10,14 +10,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Airline {
+public class AppUser {
     UUID id;
-    String website;
-    String airlineName;
-    String companyName;
-    int employees;
-    int totalFlights;
-    AppUser admin;
+    String name;
+    String email;
+    String password;
+    Long number;
+    boolean isVerified;
+    String userType;
     String status;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
