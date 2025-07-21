@@ -1,7 +1,7 @@
-package com.fbs.notification_api.dto;
+package com.fbs.central_api.dto;
 
-import com.fbs.notification_api.models.Airline;
-import com.fbs.notification_api.models.AppUser;
+import com.fbs.central_api.models.Airline;
+import com.fbs.central_api.models.AppUser;
 import lombok.*;
 
 @Getter

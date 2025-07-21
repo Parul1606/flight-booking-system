@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.tool.schema.spi.SchemaTruncator;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -33,4 +34,6 @@ public class Airline {
     @OneToOne
     AppUser admin;
     String status;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }

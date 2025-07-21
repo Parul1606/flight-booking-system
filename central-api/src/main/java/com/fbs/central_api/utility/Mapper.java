@@ -21,7 +21,7 @@ public class Mapper {
         airlineAdmin.setNumber(airlineDetails.getContactNumber());
         airlineAdmin.setVerified(false);
         airlineAdmin.setStatus(UserStatus.INACTIVE.toString());
-        airlineAdmin.setPassword(airlineAdmin.getPassword());
+        airlineAdmin.setPassword("TempPassword123!"); // TODO: Implement proper password generation
         airlineAdmin.setCreatedAt(LocalDateTime.now());
         airlineAdmin.setUpdatedAt(LocalDateTime.now());
         return airlineAdmin;

@@ -5,6 +5,7 @@ import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.service.AirlineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +38,6 @@ public class AirlineController {
         log.info("calling airlineService registerAirline method");
         // from here we will call airline service register airline method
         Airline airline = airlineService.registerAirline(airlineDetails);
+        return new ResponseEntity(airline, HttpStatus.CREATED);
     }
 }

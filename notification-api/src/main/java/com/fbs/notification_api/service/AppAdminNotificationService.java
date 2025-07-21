@@ -41,19 +41,18 @@ public class AppAdminNotificationService {
         context.setVariable("totalFlights", airlineRegistrationReqDto.getAirline().getTotalFlights());
         context.setVariable("airlineAdminName", airlineRegistrationReqDto.getAirline().getAdmin().getName());
         context.setVariable("adminEmail", airlineRegistrationReqDto.getAirline().getAdmin().getEmail());
-        context.setVariable("requestedTime", airlineRegistrationReqDto.getAirline().getCreatedAt().toString());
+        //context.setVariable("requestedTime", airlineRegistrationReqDto.getAirline().getCreatedAt().toString());
         // we need to load the html template inside this function and populate the values of all the variable
         // so to load html template inside this function we will use library called thymeleaf.
         // to load html we require object of TemplateEngine class (Present inside your thymeleaf)
         //  I want to get that thymeleaf object from springboot. So, we need to create a bean of thymeleaf class and store it in the ioc container
         String htmlContent = templateEngine.process("airline-registration-request", context); // we use templateEngine.process method to load the template inside our java function
-
         /*
         we have learned abt 2 exceptions checked & unchecked
         so here we are getting compile time checked exceptions so we need to keep our code in try n catch
         */
         try{
-            mimeMessageHelper.setTo(airlineRegistrationReqDto.getAppAdmin().getEmail());  // by using this method we will be setting the mailId to whom we want to send email... this is how we will be sending notification to the appAdmin
+            mimeMessageHelper.setTo(airlineRegistrationReqDto.getAdmin().getEmail());  // by using this method we will be setting the mailId to whom we want to send email... this is how we will be sending notification to the appAdmin
             mimeMessageHelper.setSubject(airlineRegistrationReqDto.getAirline().getAirlineName() + " Registration Request");
             //mimeMessageHelper.setText("Hey, there is the new Registration request");  // -> this line is sending normal email with normal body
             mimeMessageHelper.setText(htmlContent,true);  // when we need to send html content in this setText method we will pass another boolean parameter
