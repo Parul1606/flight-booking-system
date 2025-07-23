@@ -4,16 +4,17 @@ import com.fbs.central_api.dto.AllUsersDto;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 /*
 * Purpose of this class is to connect with db api endpoints.
@@ -35,7 +36,7 @@ public class DBApiConnector {
     public AppUser callCreateUserEndpoint(AppUser user){
         log.info("Inside callCreateUserEndpoint method with user object: " + user.toString());
         // 1. Create a url that you want to call
-        String url = dbApiBaseUrl + "/user/save";
+        String url = dbApiBaseUrl + "/user/create";
         // 2. we want to tell what rest method we want to use and what request body we want to pass
         //so for that we use requestEntity class
         RequestEntity request = RequestEntity.post(url).body(user);
@@ -75,5 +76,29 @@ public class DBApiConnector {
         RequestEntity request = RequestEntity.get(url).build();
         ResponseEntity<AllUsersDto> resp = restTemplate.exchange(url, HttpMethod.GET, request, AllUsersDto.class);
         return resp.getBody().getAppUsers();
+    }
+
+    /*
+
+     */
+    public Airline callGetAirlineByIdEndpoint(UUID airlineId){
+        String url = dbApiBaseUrl + "/airline/" + airlineId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Airline> resp = restTemplate.exchange(url, HttpMethod.GET, request, Airline.class);
+        return resp.getBody();
+    }
+
+    public Airline callUpdateAirlineEndpoint(Airline airline){
+        String url = dbApiBaseUrl + "/airline/update";
+        RequestEntity request = RequestEntity.put(url).body(airline);
+        ResponseEntity<Airline> response = restTemplate.exchange(url, HttpMethod.PUT, request, Airline.class);
+        return response.getBody();
+    }
+
+    public AppUser callUpdateUserEndpoint(AppUser user){
+        String url = dbApiBaseUrl + "/user/update";
+        RequestEntity request = RequestEntity.put(url).body(user);
+        ResponseEntity<AppUser> resp = restTemplate.exchange(url, HttpMethod.PUT, request, AppUser.class);
+        return resp.getBody();
     }
 }

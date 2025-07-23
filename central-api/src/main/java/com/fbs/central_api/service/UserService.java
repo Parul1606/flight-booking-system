@@ -25,7 +25,12 @@ public class UserService {
     work of this function is get all system admins from our users table
      */
     public List<AppUser> getAllSystemAdmins(){
-        // to get all the system admin from the user table we need to call dbApiConnector
+        // to get all the system appadmin from the user table we need to call dbApiConnector
         return dbApiConnector.callGetAllUsersByUserType(UserType.SYSTEM_ADMIN.toString());
+    }
+
+    public AppUser updateUserDetails(AppUser user){
+        // dbapi connector
+        return dbApiConnector.callUpdateUserEndpoint(user);
     }
 }

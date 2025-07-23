@@ -1,4 +1,4 @@
-package com.fbs.central_api.configurations;
+package com.fbs.central_api.connectors;
 
 import com.fbs.central_api.dto.AirlineRegistrationReqDto;
 import com.fbs.central_api.models.Airline;
@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
@@ -26,16 +25,16 @@ public class NotificationApiConnector {
     @Value("${notification.api.url}")
     String notificationBaseUrl;
 
-    public void notifySystemAdminForAirlineRegistration(AirlineRegistrationReqDto dto) {
-        try {
-            String url = notificationBaseUrl + "/appadmin/airline-registration";
-            RequestEntity<AirlineRegistrationReqDto> request = RequestEntity.put(url).body(dto);
-            restTemplate.exchange(url, HttpMethod.PUT, request, Object.class);
-        } catch (HttpServerErrorException e) {
-            log.error("Notification API returned 500: {}", e.getResponseBodyAsString());
-        } catch (Exception e) {
-            log.error("Error calling Notification API", e);
-        }
+    public void notifySystemAdminForAirlineRegistration(AirlineRegistrationReqDto airlineRegistrationReqDto){
+        String url = notificationBaseUrl + "/appadmin/airline-registration";
+        RequestEntity request = RequestEntity.put(url).body(airlineRegistrationReqDto);
+        ResponseEntity<Object> resp = restTemplate.exchange(url, HttpMethod.PUT, request, Object.class);
+    }
+
+    public void notifyAcceptRequestToAirlineAdmin(Airline airline){
+        String url = notificationBaseUrl + "/airline/admin/accept-request";
+        RequestEntity request = RequestEntity.put(url).body(airline);
+        ResponseEntity<Object> resp = restTemplate.exchange(url, HttpMethod.PUT, request, Object.class);
     }
 
 }

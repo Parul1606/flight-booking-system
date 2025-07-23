@@ -1,6 +1,6 @@
 package com.fbs.central_api.service;
 
-import com.fbs.central_api.configurations.NotificationApiConnector;
+import com.fbs.central_api.connectors.NotificationApiConnector;
 import com.fbs.central_api.dto.AirlineRegistrationReqDto;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
@@ -32,8 +32,22 @@ public class MailService {
             AirlineRegistrationReqDto airlineRegistrationReqDto = new AirlineRegistrationReqDto();
             airlineRegistrationReqDto.setAirline(airline);
             airlineRegistrationReqDto.setAdmin(systemAdmin);
-            notificationApiConnector.notifySystemAdminForAirlineRegistration(airlineRegistrationReqDto);
+            try{
+                notificationApiConnector.notifySystemAdminForAirlineRegistration(airlineRegistrationReqDto);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+
         }
+    }
+
+    public void notifyAcceptRequestToAirlineAdmin(Airline airline){
+        try{
+            notificationApiConnector.notifyAcceptRequestToAirlineAdmin(airline);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
     }
 
 }

@@ -23,7 +23,7 @@ public class AppUserController {
         this.appUserRepo = appUserRepo;
     }
 
-    @PostMapping("/save")
+    @PostMapping("/create")
     public ResponseEntity createUser(@RequestBody AppUser user){
         AppUser userResp = appUserRepo.save(user);
         return new ResponseEntity(userResp, HttpStatus.CREATED);
@@ -35,5 +35,11 @@ public class AppUserController {
         AllUsersDto allUsersDto = new AllUsersDto();
         allUsersDto.setAppUsers(users);
         return new ResponseEntity(allUsersDto, HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity update(@RequestBody AppUser user){
+        appUserRepo.save(user);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 }
