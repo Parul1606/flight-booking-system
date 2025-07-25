@@ -101,4 +101,12 @@ public class DBApiConnector {
         ResponseEntity<AppUser> resp = restTemplate.exchange(url, HttpMethod.PUT, request, AppUser.class);
         return resp.getBody();
     }
+
+    public AppUser callGetUserByEmailEndpoint(String email){
+        // are we having any endpoint related to this
+        String url = dbApiBaseUrl + "/user/email/" + email;
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<AppUser> resp = restTemplate.exchange(url, HttpMethod.GET, request, AppUser.class);
+        return resp.getBody();
+    }
 }

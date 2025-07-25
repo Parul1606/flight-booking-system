@@ -3,6 +3,7 @@ package com.fbs.db_api.controllers;
 import com.fbs.db_api.dto.AllUsersDto;
 import com.fbs.db_api.models.AppUser;
 import com.fbs.db_api.repositories.AppUserRepo;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,12 @@ public class AppUserController {
     @PutMapping("/update")
     public ResponseEntity update(@RequestBody AppUser user){
         appUserRepo.save(user);
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity getUserByEmail(@PathVariable String email){
+        AppUser user = appUserRepo.findByEmail(email);
         return new ResponseEntity(user, HttpStatus.OK);
     }
 }
