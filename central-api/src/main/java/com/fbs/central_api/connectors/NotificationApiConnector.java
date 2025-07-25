@@ -1,6 +1,7 @@
 package com.fbs.central_api.connectors;
 
 import com.fbs.central_api.dto.AirlineRegistrationReqDto;
+import com.fbs.central_api.dto.AirlineRejectDto;
 import com.fbs.central_api.models.Airline;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,14 @@ public class NotificationApiConnector {
     public void notifyAcceptRequestToAirlineAdmin(Airline airline){
         String url = notificationBaseUrl + "/airline/admin/accept-request";
         RequestEntity request = RequestEntity.put(url).body(airline);
+        ResponseEntity<Object> resp = restTemplate.exchange(url, HttpMethod.PUT, request, Object.class);
+    }
+
+    public void notifyRejectRequestToAirlineAdmin(AirlineRejectDto airlineRejectDto){
+        // are we having any url such that i can send rejection mail?
+
+        String url = notificationBaseUrl + "/airline/admin/reject-request";
+        RequestEntity request = RequestEntity.put(url).body(airlineRejectDto);
         ResponseEntity<Object> resp = restTemplate.exchange(url, HttpMethod.PUT, request, Object.class);
     }
 

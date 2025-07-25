@@ -4,5 +4,6 @@ public enum AirlineStatus {
     INACTIVE,
     ACTIVE,
     CLOSED,
-    DELETED
+    DELETED,
+    REJECTED
 }

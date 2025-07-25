@@ -51,4 +51,17 @@ public class AirlineController {
         // we will be calling our airlineService to change the status of airline and airline admin to active
         airlineService.acceptAirlineRequest(airlineId);
     }
+
+    /*
+    Why we are using GetMapping over PutMapping when we have to update the status to reject?
+    Ideally it should be PutMappping as we have to update the status of that airline as reject.
+    But, when I;m gonna click the reject button over mail so the endpoint will get triggered from the browser.
+    Browser only accepts/limits the "get" request. So, that's why we are using GetMapping.
+     */
+
+    @GetMapping("/request/reject/{airlineId}")
+    public void rejectAirlineRequest(@PathVariable UUID airlineId){
+        log.info("Reject Airline function: " + airlineId.toString());
+        airlineService.rejectAirlineRequest(airlineId);
+    }
 }
