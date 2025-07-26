@@ -1,6 +1,7 @@
 package com.fbs.central_api.connectors;
 
 import com.fbs.central_api.dto.AllUsersDto;
+import com.fbs.central_api.models.Aircraft;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import lombok.extern.slf4j.Slf4j;
@@ -107,6 +108,20 @@ public class DBApiConnector {
         String url = dbApiBaseUrl + "/user/email/" + email;
         RequestEntity request = RequestEntity.get(url).build();
         ResponseEntity<AppUser> resp = restTemplate.exchange(url, HttpMethod.GET, request, AppUser.class);
+        return resp.getBody();
+    }
+
+    public Airline getAirlineByAdminIdEndpoint(UUID adminId){
+        String url = dbApiBaseUrl + "/airline/get/admin/" + adminId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Airline> resp = restTemplate.exchange(url, HttpMethod.GET, request, Airline.class);
+        return resp.getBody();
+    }
+
+    public Aircraft callSaveAircraftEndpoint(Aircraft aircraft){
+        String url = dbApiBaseUrl + "/aircraft/save";
+        RequestEntity request = RequestEntity.post(url).body(aircraft);
+        ResponseEntity<Aircraft> resp = restTemplate.exchange(url, HttpMethod.POST, request, Aircraft.class);
         return resp.getBody();
     }
 }

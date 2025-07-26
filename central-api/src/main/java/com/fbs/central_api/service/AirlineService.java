@@ -126,7 +126,11 @@ public class AirlineService {
         // Mail api ->
 
         mailService.notifyRejectRequestToAirlineAdmin(airline.getAdmin().getEmail(), airline.getAdmin().getName(), res);
+    }
 
+    public Airline getAirlineByAdminId(UUID adminId){
+        // dbAPiconenctor to get the airline
+        return dbApiConnector.getAirlineByAdminIdEndpoint(adminId);
     }
 
 }
