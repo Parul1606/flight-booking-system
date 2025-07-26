@@ -54,20 +54,19 @@ public class UserService {
     /*
     This function should be able to validate the credentials of the user.
     1. This function will first get the user record from the user table on the basis of email
-    2. after getting the user this function will compare the password that password is correct or not.
+    2. After getting the user this function will compare the password that password is correct or not.
     3. If correct we will return true else we will return false.
      */
     public String isValidCredentials(String email, String password){
-        // 1. we need to develop one method which
-        // will bring user table on the basis of email -> Done
+        // 1. We need to develop one method which will bring user from the user table on the basis of email -> Done
         AppUser user = this.getUserByEmail(email);
-        // 2. Validate do we got the user object as null ? If Yes throw exception else move forward
+        // 2. Validate do we got the user object as null ? Is Yes throw exception else Move forward (H.W)
         if(user.getPassword().equals(password)){
-            // if password is correct im gonna return token
-            // if incorrect i am going to return null value.
-            authUtility.generateToken(user.getEmail(), user.getPassword(), user.getUserType());
+            // if password is correct i am going to return token
+            // If incorrect I am going to return null value.
+            return authUtility.generateToken(user.getEmail(), user.getPassword(), user.getUserType());
         }
-        throw new InvalidCredentials("Email or password is wrong!");
+        throw new InvalidCredentials("Email or password is wrong");
     }
 
     public boolean validateToken(String token){
