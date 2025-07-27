@@ -1,9 +1,7 @@
 package com.fbs.central_api.connectors;
 
 import com.fbs.central_api.dto.AllUsersDto;
-import com.fbs.central_api.models.Aircraft;
-import com.fbs.central_api.models.Airline;
-import com.fbs.central_api.models.AppUser;
+import com.fbs.central_api.models.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -123,5 +121,26 @@ public class DBApiConnector {
         RequestEntity request = RequestEntity.post(url).body(aircraft);
         ResponseEntity<Aircraft> resp = restTemplate.exchange(url, HttpMethod.POST, request, Aircraft.class);
         return resp.getBody();
+    }
+
+    public Aircraft callGetAircraftById(UUID aircraftId){
+        String url = dbApiBaseUrl + "/aircraft/" + aircraftId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Aircraft> resp = restTemplate.exchange(url, HttpMethod.GET, request, Aircraft.class);
+        return resp.getBody();
+    }
+
+    public Flight callCreateFlightEndpoint(Flight flight){
+        String url = dbApiBaseUrl + "/flight/create" ;
+        RequestEntity request = RequestEntity.post(url).body(flight);
+        ResponseEntity<Flight> response = restTemplate.exchange(url, HttpMethod.POST, request, Flight.class);
+        return  response.getBody();
+    }
+
+    public FlightSeatMapping callCreateFlightSeatMapping(FlightSeatMapping flightSeatMapping){
+        String url = dbApiBaseUrl + "/seatmapping/create";
+        RequestEntity request = RequestEntity.post(url).body(flightSeatMapping);
+        ResponseEntity<FlightSeatMapping> response = restTemplate.exchange(url, HttpMethod.POST, request, FlightSeatMapping.class);
+        return  response.getBody();
     }
 }

@@ -11,6 +11,8 @@ import com.fbs.central_api.utility.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AircraftService {
 
@@ -28,6 +30,10 @@ public class AircraftService {
         this.airlineService = airlineService;
         this.mapper = mapper;
         this.dbApiConnector = dbApiConnector;
+    }
+
+    public Aircraft getAircraftById(UUID id){
+        return dbApiConnector.callGetAircraftById(id);
     }
 
     public Aircraft registerAircraft(AircraftRegistrationDto aircraftRegistrationDto,

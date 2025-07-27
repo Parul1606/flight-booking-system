@@ -2,12 +2,12 @@ package com.fbs.central_api.utility;
 
 import com.fbs.central_api.dto.AircraftRegistrationDto;
 import com.fbs.central_api.dto.AirlineRegistrationDto;
+import com.fbs.central_api.dto.FlightDetailsDto;
+import com.fbs.central_api.dto.SeatMappingDto;
 import com.fbs.central_api.enums.AirlineStatus;
 import com.fbs.central_api.enums.UserStatus;
 import com.fbs.central_api.enums.UserType;
-import com.fbs.central_api.models.Aircraft;
-import com.fbs.central_api.models.Airline;
-import com.fbs.central_api.models.AppUser;
+import com.fbs.central_api.models.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -54,5 +54,35 @@ public class Mapper {
         aircraft.setBuildDate(aircraftRegistrationDto.getBuildDate());
         aircraft.setModelNumber(aircraftRegistrationDto.getModelNumber());
         return aircraft;
+    }
+
+    public Flight mapFlightDetailsDtoToFlightModel(FlightDetailsDto flightDetailsDto, Airline airline, Aircraft aircraft){
+        Flight flight = new Flight();
+        flight.setAirline(airline);
+        flight.setAircraft(aircraft);
+        flight.setConnecting(flightDetailsDto.isConnecting());
+        flight.setBoardingTime(flightDetailsDto.getBoardingTime());
+        flight.setArrivalTime(flightDetailsDto.getArrivalTime());
+        flight.setFlightType(flightDetailsDto.getFlightType());
+        flight.setBoardingMinutes(flightDetailsDto.getBoardingMinutes());
+        flight.setDepartureTime(flightDetailsDto.getDepartureTime());
+        flight.setTotalTime(flightDetailsDto.getTotalTime());
+        flight.setSourceAircraft(flightDetailsDto.getSourceAircraft());
+        flight.setCreatedAt(LocalDateTime.now());
+        flight.setUpdatedAt(LocalDateTime.now());
+        return flight;
+    }
+
+    public FlightSeatMapping mapFLightSeatMappingDtoToModel(SeatMappingDto seatMappingDto, Flight flight){
+        FlightSeatMapping flightSeatMapping = new FlightSeatMapping();
+        flightSeatMapping.setFlight(flight);
+        flightSeatMapping.setRange(seatMappingDto.getRange());
+        flightSeatMapping.setClassName(seatMappingDto.getClassName());
+        flightSeatMapping.setBasePrice(seatMappingDto.getBasePrice());
+        flightSeatMapping.setWindowPrice(seatMappingDto.getWindowPrice());
+        flightSeatMapping.setTotalWindow(seatMappingDto.getTotalWindow());
+        flightSeatMapping.setCreatedAt(LocalDateTime.now());
+        flightSeatMapping.setUpdatedAt(LocalDateTime.now());
+        return flightSeatMapping;
     }
 }
