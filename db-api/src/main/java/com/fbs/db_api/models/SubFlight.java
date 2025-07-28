@@ -20,7 +20,6 @@ public class SubFlight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
-
     @ManyToOne
     Flight flight;
     int priority;
@@ -28,7 +27,7 @@ public class SubFlight {
     String destinationAirport;
     LocalDateTime boardingTime;
     LocalDateTime departureTime;
-    LocalDateTime arrivalTime;   // where the flight will land
+    LocalDateTime arrivalTime; // Where this subflight will land;
     int boardingMinutes;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;

@@ -70,7 +70,7 @@ public class AirlineService {
         // now we got the airline object e need to save this airline into the airline tan;e
         // So, to this airline into airline table we need to call database api connecotr
         // Internally dbapiconnector will be calling your createairline endpoint
-        airline = dbApiConnector.callCreatedAirlineEndpoint(airline);
+        airline = dbApiConnector.callCreateAirlineEndpoint(airline);
         //when we have created both the inactive records for airline as well as airline appadmin
         // We need to mail app appadmin that this airline is trying to register into your application.
         // We need to think something how we can mail?

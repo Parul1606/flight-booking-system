@@ -18,6 +18,8 @@ public class FlightSeatMappingController {
     public FlightSeatMappingController(FlightSeatMappingRepo flightSeatMappingRepo){
         this.flightSeatMappingRepo = flightSeatMappingRepo;
     }
+
+
     @PostMapping("/create")
     public FlightSeatMapping createFlightSeatMapping(@RequestBody FlightSeatMapping flightSeatMapping){
         return flightSeatMappingRepo.save(flightSeatMapping);

@@ -17,13 +17,18 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Table(name = "flightseatmapping")
-public class FlightSeatMapping extends SeatMapping {
+public class FlightSeatMapping{
 
     // id	flightId	classname	range	baseprice	windowprice
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
+    String className;
+    String range;  // 1-20
+    int basePrice;
+    int windowPrice;
+    int totalWindow;
 
     @ManyToOne
     Flight flight;

@@ -10,10 +10,15 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlightSeatMapping extends SeatMapping{
+public class FlightSeatMapping{
 
     UUID id;
+    String className;
     Flight flight;
+    String range; // 1-20
+    int basePrice;
+    int windowPrice;
+    int totalWindow;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

@@ -13,10 +13,8 @@ public class SubFlightSeatBooked {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
-
     @ManyToOne
     SubFlight flight;
-
     @ManyToOne
     AppUser bookedBy;
     LocalDateTime createdAt;

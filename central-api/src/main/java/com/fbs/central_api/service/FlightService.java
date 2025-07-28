@@ -57,11 +57,11 @@ public class FlightService {
             SeatMappingDto seatMappingDto = seatMappingDtos.get(i);
             // mapper
             FlightSeatMapping flightSeatMapping = mapper.mapFLightSeatMappingDtoToModel(seatMappingDto, flight);
-            // dbApiCOnnector to save the flightSeatMapping
+            // dbApiConnector to save the flightSeatMapping
             dbApiConnector.callCreateFlightSeatMapping(flightSeatMapping);
         }
 
-        // now after mapping and creatinf flight we need to amil to the flight admin that your requested flight got created inside the system.
+        // now after mapping and creating flight we need to amil to the flight admin that your requested flight got created inside the system.
         return flight;
 
     }

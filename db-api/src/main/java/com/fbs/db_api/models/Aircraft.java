@@ -22,7 +22,7 @@ public class Aircraft {
 
     int modelNumber;
 
-    String manufacture;
+    String manufacturer;
 
     String modelName;
 

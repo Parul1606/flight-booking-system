@@ -70,6 +70,7 @@ public class Mapper {
         flight.setSourceAircraft(flightDetailsDto.getSourceAircraft());
         flight.setCreatedAt(LocalDateTime.now());
         flight.setUpdatedAt(LocalDateTime.now());
+        flight.setDestinationAircraft(flightDetailsDto.getDestinationAircraft());
         return flight;
     }
 

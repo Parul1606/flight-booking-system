@@ -54,7 +54,7 @@ public class DBApiConnector {
     /*
     we will write one method and that method will be hitting request to dbapicreateairline endpoint.
     */
-    public Airline callCreatedAirlineEndpoint(Airline airline){
+    public Airline callCreateAirlineEndpoint(Airline airline){
         // 1. create url
         String url = dbApiBaseUrl + "/airline/create";
         // 2. create request
