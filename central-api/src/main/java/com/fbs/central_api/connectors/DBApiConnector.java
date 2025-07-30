@@ -9,7 +9,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -142,5 +141,12 @@ public class DBApiConnector {
         RequestEntity request = RequestEntity.post(url).body(flightSeatMapping);
         ResponseEntity<FlightSeatMapping> response = restTemplate.exchange(url, HttpMethod.POST, request, FlightSeatMapping.class);
         return  response.getBody();
+    }
+
+    public SubFlight callCreateSubFlightEndpoint(SubFlight subFlight){
+        String url = dbApiBaseUrl + "/subflight/create";
+        RequestEntity request = RequestEntity.post(url).body(subFlight);
+        ResponseEntity<SubFlight> response = restTemplate.exchange(url, HttpMethod.POST, request, SubFlight.class);
+        return response.getBody();
     }
 }

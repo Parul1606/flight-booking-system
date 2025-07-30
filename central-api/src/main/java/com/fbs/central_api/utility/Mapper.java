@@ -1,9 +1,6 @@
 package com.fbs.central_api.utility;
 
-import com.fbs.central_api.dto.AircraftRegistrationDto;
-import com.fbs.central_api.dto.AirlineRegistrationDto;
-import com.fbs.central_api.dto.FlightDetailsDto;
-import com.fbs.central_api.dto.SeatMappingDto;
+import com.fbs.central_api.dto.*;
 import com.fbs.central_api.enums.AirlineStatus;
 import com.fbs.central_api.enums.UserStatus;
 import com.fbs.central_api.enums.UserType;
@@ -12,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/**
+ * We call mapper as ADAPTER class..because this class is having some kind of method you are providing
+ */
 @Component
 public class Mapper {
 
@@ -85,5 +85,20 @@ public class Mapper {
         flightSeatMapping.setCreatedAt(LocalDateTime.now());
         flightSeatMapping.setUpdatedAt(LocalDateTime.now());
         return flightSeatMapping;
+    }
+
+    public SubFlight mapSubFlightDtoToSubFlightModel(SubFlightDto subFlightDto, Flight flight){
+        SubFlight subFlight = new SubFlight();
+        subFlight.setFlight(flight);
+        subFlight.setArrivalTime(subFlightDto.getArrivalTime());
+        subFlight.setBoardingMinutes(subFlightDto.getBoardingMinutes());
+        subFlight.setDepartureTime(subFlightDto.getDepartureTime());
+        subFlight.setPriority(subFlightDto.getPriority());
+        subFlight.setDestinationAirport(subFlightDto.getDestinationAirport());
+        subFlight.setSourceAirport(subFlightDto.getSourceAirport());
+        subFlight.setCreatedAt(LocalDateTime.now());
+        subFlight.setUpdatedAt(LocalDateTime.now());
+        subFlight.setBoardingTime(subFlight.getBoardingTime());
+        return subFlight;
     }
 }

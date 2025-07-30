@@ -31,6 +31,6 @@ public class FlightDetailsDto {
     boolean isConnecting;  // is this flight a connecting flight ? or not
 
     UUID aircraftId;
-
+    List<SubFlightDto> subFlightDtos;
     List<SeatMappingDto> seatMappingDtos;
 }
