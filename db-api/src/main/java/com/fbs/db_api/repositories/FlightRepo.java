@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface FlightRepo extends JpaRepository<Flight, UUID> {
 
-    @Query(value = "select * from flights where source_airport=:sourceAirport and destination_airport=:destinationAirport and departure_time >=:dateTime", nativeQuery = true)
+    @Query(value = "select * from flights where source_airport=:sourceAirport and destination_airport=:destinationAirport and departure_time >= CAST(:dateTime AS timestamp)", nativeQuery = true)
     public List<Flight> getAllFlights(String sourceAirport,
                                       String destinationAirport,
                                       String dateTime);
