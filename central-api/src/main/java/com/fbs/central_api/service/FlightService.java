@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -78,5 +79,10 @@ public class FlightService {
         return flight;
     }
 
-
+    public Object searchFlight(String sourceAirport,
+                                     String destinationAirport,
+                                     String localDateTime){
+        //dbAPiconenctor
+        return dbApiConnector.callSearchFlightEndpoint(sourceAirport,destinationAirport,localDateTime);
+    }
 }

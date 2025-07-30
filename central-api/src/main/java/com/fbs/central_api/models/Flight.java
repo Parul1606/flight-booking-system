@@ -15,8 +15,8 @@ public class Flight {
     UUID id;
     Airline airline;
     Aircraft aircraft;
-    String sourceAircraft;   // mumbai
-    String destinationAircraft;  // new york
+    String sourceAirport;   // mumbai
+    String destinationAirport;  // new york
     String flightType;  // International, Domestic, Emergency
     int totalTime;  // TotalTime in minutes
     LocalDateTime boardingTime;  // when you passengers need to sit in the aircraft

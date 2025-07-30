@@ -2,6 +2,7 @@ package com.fbs.central_api.controllers;
 
 import com.fbs.central_api.dto.LoginDto;
 import com.fbs.central_api.exceptions.InvalidCredentials;
+import com.fbs.central_api.service.FlightService;
 import com.fbs.central_api.service.UserService;
 import com.fbs.central_api.utility.AuthUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,15 @@ public class GeneralUserController {
 
     UserService userService;
     AuthUtility authUtility;
+    FlightService flightService;
 
     @Autowired
     public GeneralUserController(UserService userService,
-                                 AuthUtility authUtility) {
+                                 AuthUtility authUtility,
+                                 FlightService flightService) {
         this.userService = userService;
         this.authUtility = authUtility;
+        this.flightService = flightService;
     }
 
 
@@ -35,6 +39,14 @@ public class GeneralUserController {
         } catch (InvalidCredentials e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    @GetMapping("/search")
+    public Object searchFlight(@RequestParam String sourceAirport,
+                                       @RequestParam String destinationAirport,
+                                       @RequestParam String dateTime){
+        // flight service
+        return flightService.searchFlight(sourceAirport,destinationAirport, dateTime);
     }
 
 }

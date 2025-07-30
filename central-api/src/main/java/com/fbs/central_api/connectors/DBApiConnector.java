@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /*
@@ -148,5 +149,16 @@ public class DBApiConnector {
         RequestEntity request = RequestEntity.post(url).body(subFlight);
         ResponseEntity<SubFlight> response = restTemplate.exchange(url, HttpMethod.POST, request, SubFlight.class);
         return response.getBody();
+    }
+
+    public Object callSearchFlightEndpoint(String sourceAirport,
+                                           String destinationAirport,
+                                           String dateTime){
+        // db Api endpoint
+        String url = dbApiBaseUrl + "/flight/search?" + "sourceAirport="+sourceAirport+"&" + "destinationAirport=" + destinationAirport +"&" + "dateTime=" + dateTime;
+        log.info(url);
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Object> resp = restTemplate.exchange(url, HttpMethod.GET, request, Object.class);
+        return resp.getBody();
     }
 }

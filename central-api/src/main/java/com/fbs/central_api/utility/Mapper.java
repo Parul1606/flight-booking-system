@@ -67,10 +67,10 @@ public class Mapper {
         flight.setBoardingMinutes(flightDetailsDto.getBoardingMinutes());
         flight.setDepartureTime(flightDetailsDto.getDepartureTime());
         flight.setTotalTime(flightDetailsDto.getTotalTime());
-        flight.setSourceAircraft(flightDetailsDto.getSourceAircraft());
+        flight.setSourceAirport(flightDetailsDto.getSourceAircraft());
         flight.setCreatedAt(LocalDateTime.now());
         flight.setUpdatedAt(LocalDateTime.now());
-        flight.setDestinationAircraft(flightDetailsDto.getDestinationAircraft());
+        flight.setDestinationAirport(flightDetailsDto.getDestinationAircraft());
         return flight;
     }
 
