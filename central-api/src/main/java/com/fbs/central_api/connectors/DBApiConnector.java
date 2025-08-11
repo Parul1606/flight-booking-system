@@ -155,6 +155,9 @@ public class DBApiConnector {
                                            String destinationAirport,
                                            String dateTime){
         // db Api endpoint
+        sourceAirport = sourceAirport.replace(' ', '+');
+        destinationAirport = destinationAirport.replace(' ', '+');
+        dateTime = dateTime.replace(' ', '+');
         String url = dbApiBaseUrl + "/flight/search?" + "sourceAirport="+sourceAirport+"&" + "destinationAirport=" + destinationAirport +"&" + "dateTime=" + dateTime;
         log.info(url);
         RequestEntity request = RequestEntity.get(url).build();
