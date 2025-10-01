@@ -4,7 +4,7 @@ A scalable, microservices-based flight booking platform built with Spring Boot.
 
 ## 🚀 Features
 
-- **Multi-tenant Architecture**: Separate services for core operations, database, and notifications
+- **Microservices Architecture**: Separate services for core operations, database, and notifications
 - **Airline Management**: Register and manage airlines with admin approval workflow
 - **Flight Search & Booking**: Search for flights and book tickets
 - **Email Notifications**: Real-time email notifications for various events
